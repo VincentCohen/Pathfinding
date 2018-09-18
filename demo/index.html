@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grid</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+
+            height: 100%;
+            width: 100%;
+        }
+
+        body {
+            font-size: 12px;
+            font-family: helvetica;
+        }
+
+        #grid {}
+    </style>
+</head>
+    <body>
+        <canvas id="grid" width="" height="">
+            Oops!.. Your browser does not support canvas.
+        </canvas>
+
+        <script src="Grid.js"></script>
+        <script>
+        let grid = new Grid(document.getElementById("grid"));
+
+        grid.generate();
+        </script>
+    </body>
+</html>
