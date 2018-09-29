@@ -21,15 +21,33 @@ class Grid {
     }
 
     draw() {
-        this.ctx.fillStyle = this.nodeColor;
-        var x = 0;
-        for (var i = 0; i < 30; i++ ) {
-            this.square(i,x);
-            x++;
-        }
+        var wall = []
+
+        wall[20] = []
+        wall[21] = []
+        wall[20][21] = 'wall';
+        wall[20][22] = 'route';
+        wall[20][23] = 'route';
+        wall[21][23] = 'wall';
+
+        wall.forEach(function(item, x) {
+            
+            item.forEach(function(val, y) {
+                if (val === 'wall') {
+                    this.square(x, y, '#FF0000');
+                }
+
+                if (val === 'route') {
+                    this.square(x, y, '#E3E3E3');
+                }
+
+            }, this);
+        }, this);
+
     }
 
-    square(x,y) {
+    square(x,y, color) {
+        this.ctx.fillStyle = color;
         this.ctx.fillRect(
             x*this.nodeSize, 
             y*this.nodeSize, 
