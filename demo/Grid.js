@@ -1,6 +1,8 @@
 class Grid {
 
     constructor() {
+
+        console.log('Constructing Grid.js');
         this.width  = document.body.clientWidth;
         this.height = document.body.clientHeight;
 
@@ -64,17 +66,12 @@ class Grid {
             this.ctx.lineTo(x, this.canvas.width);
         }
 
-        console.log(Math.floor(x));
-
         for (var y = 0.5; y < this.canvas.height; y += this.nodeSize)
         {
             this.ctx.moveTo(0, y);
             this.ctx.lineTo(this.canvas.width, y);
         }
 
-        console.log(Math.floor(y));
-
         return this.ctx.stroke();
     }
-  
-  }
+ }

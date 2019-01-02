@@ -14,6 +14,7 @@
         body {
             font-size: 12px;
             font-family: helvetica;
+            cursor: pointer;
         }
 
         #grid {}
@@ -28,6 +29,42 @@
         <script src="Pathfinder.js"></script>
         <script>
         let p = new Pathfinder(document.getElementById("grid"));
+
+        function getOffsetXY(e) {
+            e = e || window.event;
+            var target = e.target || e.srcElement,
+                style = target.currentStyle || window.getComputedStyle(target, null),
+                borderLeftWidth = parseInt(style['borderLeftWidth'], 10),
+                borderTopWidth = parseInt(style['borderTopWidth'], 10),
+                rect = target.getBoundingClientRect(),
+                offsetX = e.clientX - borderLeftWidth - rect.left,
+                offsetY = e.clientY - borderTopWidth - rect.top;
+
+            return [offsetX, offsetY];
+        }
+    
+        document.body.onclick = function(e) {
+            var offsets = getOffsetXY(e);
+
+            p.add(offsets[0], offsets[1]);
+        };
+
+        var shouldDraw = false;
+        document.body.onmousedown = function(e) {
+            shouldDraw = true;
+        };
+        
+        document.body.onmouseup = function(e) {
+            shouldDraw = false;
+        };
+
+        document.body.onmousemove = function(e) {
+            if (!shouldDraw) { return false; }
+
+            var offsets = getOffsetXY(e);
+
+            p.add(offsets[0], offsets[1]);
+        };
         </script>
     </body>
 </html>

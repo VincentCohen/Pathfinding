@@ -1,29 +1,47 @@
 class Pathfinder {
 
-    constructor (canvas) {
-        let grid = new Grid(canvas);
+    constructor(canvas) {
+        
+        this.debug = true;
+        this.canvas = canvas;
+        this.grid = this.grid.bind(this);
 
-        this.addEventListeners()
+        this.board = this.grid();
 
+        this.say("Constructed Pathfinder.js");
         // Run every x and redraw
-        this.update();
+        // this.update();
     }
 
-    addEventListeners() {
-        document.addEventListener("click", this.add)
+    grid() {
+        if (!this.gridCached) {
+            this.gridCached = new Grid(this.canvas);
+        }
+        this.say("Pathfinder.Grid()");
+        return this.gridCached;
     }
 
-    add(event) {
-        console.log(event.clientX + '-' + event.clientY);
+    add(x, y) {
+        
+        x = Math.floor(x/this.grid().nodeSize);
+        y = Math.floor(y/this.grid().nodeSize) || 0;
+
+        this.board.square(x, y, '#E3E3E3');
     }
 
-    update () {
-        this.cells();
+    say(msg) {
+        if (this.debug) {
+            console.log(msg);
+        }
     }
 
-    cells() {
-        // Draw every of every itteration
-    }
+    // update() {
+    //     this.cells();
+    // }
+
+    // cells() {
+    //     // Draw every of every itteration
+    // }
 
 }
  
