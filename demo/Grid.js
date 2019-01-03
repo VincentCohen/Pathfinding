@@ -19,17 +19,6 @@ class Grid {
         this.nodeColor = '#FF0000';
 
         this.grid();
-
-        var items = []
-
-        items[20] = []
-        items[21] = []
-        items[20][21] = 'wall';
-        items[20][22] = 'route';
-        items[20][23] = 'route';
-        items[21][23] = 'wall';
-
-        this.draw(items);
     }
 
     draw(items) {

@@ -9,8 +9,22 @@ class Pathfinder {
         this.board = this.grid();
 
         this.say("Constructed Pathfinder.js");
+
+        var self = this;
         // Run every x and redraw
-        // this.update();
+        var interval = setInterval(function() {
+            var rand = Math.floor(Math.random() * Math.floor(50));
+
+            var items = []
+            items[rand] = []
+            items[rand+1] = []
+            items[rand][rand] = 'wall';
+            items[rand][rand+1] = 'route';
+            items[rand][rand+2] = 'route';
+            items[rand+1][rand+3] = 'wall';
+
+            self.grid().draw(items);
+        }, 1000);
     }
 
     grid() {
@@ -34,9 +48,12 @@ class Pathfinder {
         }
     }
 
-    // update() {
-    //     this.cells();
-    // }
+    update() {
+
+        console.log('drawing..');
+
+        // this.board.draw(items);
+    }
 
     // cells() {
     //     // Draw every of every itteration
