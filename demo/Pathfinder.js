@@ -22,11 +22,10 @@ class Pathfinder {
     }
 
     add(x, y) {
-        
         x = Math.floor(x/this.grid().nodeSize);
         y = Math.floor(y/this.grid().nodeSize) || 0;
 
-        this.board.square(x, y, '#E3E3E3');
+        this.board.square(x, y, '#f8f8f8');
     }
 
     say(msg) {

@@ -19,20 +19,21 @@ class Grid {
         this.nodeColor = '#FF0000';
 
         this.grid();
-        this.draw();
+
+        var items = []
+
+        items[20] = []
+        items[21] = []
+        items[20][21] = 'wall';
+        items[20][22] = 'route';
+        items[20][23] = 'route';
+        items[21][23] = 'wall';
+
+        this.draw(items);
     }
 
-    draw() {
-        var wall = []
-
-        wall[20] = []
-        wall[21] = []
-        wall[20][21] = 'wall';
-        wall[20][22] = 'route';
-        wall[20][23] = 'route';
-        wall[21][23] = 'wall';
-
-        wall.forEach(function(item, x) {
+    draw(items) {
+        items.forEach(function(item, x) {
             
             item.forEach(function(val, y) {
                 if (val === 'wall') {
@@ -40,7 +41,7 @@ class Grid {
                 }
 
                 if (val === 'route') {
-                    this.square(x, y, '#E3E3E3');
+                    this.square(x, y, '#f6f6f6');
                 }
 
             }, this);
@@ -51,14 +52,15 @@ class Grid {
     square(x,y, color) {
         this.ctx.fillStyle = color;
         this.ctx.fillRect(
-            x*this.nodeSize, 
-            y*this.nodeSize, 
-            this.nodeSize, 
-            this.nodeSize
+            x*this.nodeSize + 1, // Makes sure the square falls within the grid borders
+            y*this.nodeSize + 1, 
+            this.nodeSize-1, 
+            this.nodeSize-1 
         );
     }
   
     grid() {
+        this.ctx.strokeStyle = '#f0f0f0';
 
         for (var x = 0.5; x < this.canvas.width; x += this.nodeSize)
         {
