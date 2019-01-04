@@ -10,20 +10,21 @@ class Pathfinder {
 
         this.say("Constructed Pathfinder.js");
 
+
+        this.tiles = []
+        this.tiles[0] = []
+        this.tiles[1] = []
+        this.tiles[1][0] = 'wall';
+        this.tiles[1][1] = 'route';
+        this.tiles[1][2] = 'wall';
+
         var self = this;
         // Run every x and redraw
         var interval = setInterval(function() {
-            var rand = Math.floor(Math.random() * Math.floor(50));
+            // retrieve remote items..
+            var rand = Math.floor(Math.random() * Math.floor(50));            
 
-            var items = []
-            items[rand] = []
-            items[rand+1] = []
-            items[rand][rand] = 'wall';
-            items[rand][rand+1] = 'route';
-            items[rand][rand+2] = 'route';
-            items[rand+1][rand+3] = 'wall';
-
-            self.grid().draw(items);
+            self.grid().draw(self.tiles);
         }, 1000);
     }
 

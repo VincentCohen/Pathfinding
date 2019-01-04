@@ -1,8 +1,6 @@
 class Grid {
 
     constructor() {
-
-        console.log('Constructing Grid.js');
         this.width  = document.body.clientWidth;
         this.height = document.body.clientHeight;
 
@@ -17,6 +15,8 @@ class Grid {
 
         this.nodeSize  = 20;
         this.nodeColor = '#FF0000';
+
+        this.tiles = [];
 
         this.grid();
     }
@@ -51,16 +51,25 @@ class Grid {
     grid() {
         this.ctx.strokeStyle = '#f0f0f0';
 
-        for (var x = 0.5; x < this.canvas.width; x += this.nodeSize)
-        {
-            this.ctx.moveTo(x, 0);
-            this.ctx.lineTo(x, this.canvas.width);
+
+        var xAxis = Math.floor(this.canvas.width/this.nodeSize);
+        var yAxis = Math.floor(this.canvas.height/this.nodeSize);
+
+        for (var x = 0; x < xAxis; x++) {
+            this.ctx.moveTo(x*this.nodeSize, 0);
+            this.ctx.lineTo(x*this.nodeSize, this.canvas.width);
+
+            this.tiles[x] = [];
+            for (var y = 0; y < yAxis; y++) {
+                this.tiles[x][y] = [];
+            }
         }
 
-        for (var y = 0.5; y < this.canvas.height; y += this.nodeSize)
-        {
-            this.ctx.moveTo(0, y);
-            this.ctx.lineTo(this.canvas.width, y);
+        console.log(this.tiles);
+
+        for (var y = 0; y < yAxis; y++) {
+            this.ctx.moveTo(0, y*this.nodeSize);
+            this.ctx.lineTo(this.canvas.width, y*this.nodeSize);
         }
 
         return this.ctx.stroke();
